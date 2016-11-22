@@ -2,3 +2,20 @@ extends layout
 
 block content
     h1 Chat Rooms:
+    a.btn.btn-primary(href='/admin/rooms/add') Add new room
+    table.table.table-striped
+        thead
+            th Name
+            th Id
+            th
+        tbody
+            each room in rooms
+                tr
+                    td
+                        a(href='#') #{room.name}
+                    td= room.id
+                    td
+                        a(href='/admin/rooms/delete/#{room.id}').btn.btn-danger
+                            span.glyphicon.glyphicon-remove
+                        a(href='/admin/rooms/edit/#{room.id}').btn.btn-warning
+                            span.glyphicon.glyphicon-pencil

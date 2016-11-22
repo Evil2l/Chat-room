@@ -9,8 +9,12 @@
   "author": "Evil2l",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
-    "jade": "^1.11.0"
+    "jade": "^1.11.0",
+    "lodash": "^4.17.2",
+    "node-uuid": "^1.4.7",
+    "uuid": "^3.0.0"
   }
 }
