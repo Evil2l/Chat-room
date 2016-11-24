@@ -19,6 +19,7 @@ router.get('/rooms', function (req, res){
 });
 
 router.route('/rooms/add')
+
 // Add view
 
     .get(function (req, res){
@@ -40,8 +41,9 @@ router.route('/rooms/add')
 
 // Edit view
 router.route('/rooms/edit/:id')
-    .get(function(req, res){
-
+    // this middleware do what got to be done before requests
+    // than continue
+    .all(function(req,res, next){
         var roomId = req.params.id;
 
         var room = _.find(roomData, r => r.id === roomId);
@@ -51,18 +53,20 @@ router.route('/rooms/edit/:id')
             res.sendStatus(404);
             return;
         }
+        res.locals.room.name = room;
+        next();
+    })
 
-        res.render("edit", { room });
+    .get(function(req, res){
+
+
+        res.render("edit");
     })
 
 // Edit request
     .post(function (req, res){
 
-        var roomId = req.params.id;
-
-        var room = _.find(roomData, r => r.id === roomId);
-
-        room.name = req.body.name;
+        res.locals.room.name = req.body.name;
 
         res.redirect(res.baseUrl +'/rooms')
     });
